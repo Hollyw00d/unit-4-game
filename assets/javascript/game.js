@@ -4,6 +4,7 @@ $(document).ready(function() {
 
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
+    var $defenderLinks = $('#defender a');
 
     var $messages = $('#messages');
 
@@ -19,8 +20,6 @@ $(document).ready(function() {
         if(startGame) {
             $yourCharacterLinks.addClass('d-none');
             $(this).removeClass('d-none');
-            
-            console.log($(this).attr('data-char'));
 
             for(var i = 0; i < $attackerLinks.length; i++) {
                 if($($attackerLinks[i]).attr('data-char') === $(this).attr('data-char')) {
@@ -32,5 +31,22 @@ $(document).ready(function() {
             }
         }
     });
+
+    $attackerLinks.on('click', function(e) {
+        e.preventDefault();
+        if(startGame) {
+            $(this).addClass('d-none');
+
+            for(var i = 0; i < $defenderLinks.length; i++) {
+                if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
+                    $($defenderLinks[i]).removeClass('d-none');
+                }
+                else {
+                    $($defenderLinks[i]).addClass('d-none');
+                }
+            }            
+        }
+    });
+
 
 });
