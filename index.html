@@ -14,80 +14,149 @@
 
     <div class="container pt-4">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h1>Star Wars RPG</h1>
                 <p id="game-state-btn" class="pb-4"><button type="button" class="btn btn-dark">Start Game</button></p>
                 <p id="attack-btn"><button type="button" class="btn btn-danger">Attack</button></p>
             </div>            
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Your Character</h2>
                     </div>
                 </div>
-                <div class="row pt-2">
-                    <div class="col-md-3">
-                        <a href="#" class="obi-wan-kenobi">
-                            <img src="assets/images/obi-wan-kenobi.png" alt="Obi-Wan Kenobi" class="img-fluid">
-                        </a>
+                <div class="row pt-2" id="your-character">
+                    <div class="col-lg-3">
+                        <div class="fighter-container">
+                            <a href="#" class="obi-wan-kenobi">
+                                <p>Obi-Wan Kenobi</p>
+                                <img src="assets/images/obi-wan-kenobi.png" alt="Obi-Wan Kenobi" class="img-fluid">
+                                <p>120</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-3" class="here">
-                        <a href="#">
-                            <img src="assets/images/obi-wan-kenobi.png" alt="here" class="img-fluid">
-                        </a>
+                    <div class="col-lg-3">
+                        <div class="fighter-container">
+                            <a href="#" class="luke-skywalker">
+                                <p>Luke Skywalker</p>
+                                <img src="assets/images/luke-skywalker.png" alt="Luke Skywalker" class="img-fluid">
+                                <p>100</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-3" class="here">
-                        <a href="#">
-                            <img src="assets/images/obi-wan-kenobi.png" alt="here" class="img-fluid">
-                        </a>
+                    <div class="col-lg-3">
+                        <div class="fighter-container">
+                            <a href="#" class="dark-sidious">
+                                <p>Dark Sidious</p>
+                                <img src="assets/images/darth-sidious.png" alt="Darth Sidious" class="img-fluid">
+                                <p>150</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-3" class="here">
-                        <a href="#">
-                            <img src="assets/images/obi-wan-kenobi.png" alt="here" class="img-fluid">
-                        </a>
+                    <div class="col-lg-3">
+                        <div class="fighter-container">
+                            <a href="#" class="darth-maul">
+                                <p>Darth Maul</p>
+                                <img src="assets/images/darth-maul.png" alt="Darth Maul" class="img-fluid">
+                                <p>180</p>
+                            </a>
+                        </div>                        
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt-2">
                     <div class="col-md-12">
                         <h2>Enemies Available to Attack</h2>
                     </div>
                 </div>
-                <div class="row pt-2">
-                    <div class="col-md-3">
-                        here
+                <div class="row pt-2" id="enemies-to-attack">
+
+                    <div class="col-lg-3">
+                        <div class="fighter-container d-none">
+                            <a href="#" class="obi-wan-kenobi d-hidden">
+                                <p>Obi-Wan Kenobi</p>
+                                <img src="assets/images/obi-wan-kenobi.png" alt="Obi-Wan Kenobi" class="img-fluid">
+                                <p>120</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        here
+                    <div class="col-lg-3">
+                        <div class="fighter-container d-none">
+                            <a href="#" class="luke-skywalker">
+                                <p>Luke Skywalker</p>
+                                <img src="assets/images/luke-skywalker.png" alt="Luke Skywalker" class="img-fluid">
+                                <p>100</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        here
+                    <div class="col-lg-3">
+                        <div class="fighter-container d-none">
+                            <a href="#" class="dark-sidious">
+                                <p>Dark Sidious</p>
+                                <img src="assets/images/darth-sidious.png" alt="Darth Sidious" class="img-fluid">
+                                <p>150</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        here
+                    <div class="col-lg-3">
+                        <div class="fighter-container d-none">
+                            <a href="#" class="darth-maul">
+                                <p>Darth Maul</p>
+                                <img src="assets/images/darth-maul.png" alt="Darth Maul" class="img-fluid">
+                                <p>180</p>
+                            </a>
+                        </div>                        
                     </div>
+
+
+
+
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Defender</h2>
                     </div>
                 </div>
-                <div class="row pt-2">
-                    <div class="col-md-3">
-                        here
-                    </div>
-                    <div class="col-md-3">
-                        here
-                    </div>
-                    <div class="col-md-3">
-                        here
-                    </div>
-                    <div class="col-md-3">
-                        here
-                    </div>
+                <div class="row pt-2" id="defender">
+                    <div class="col-lg-3">
+                            <div class="fighter-container d-none">
+                                <a href="#" class="obi-wan-kenobi d-hidden">
+                                    <p>Obi-Wan Kenobi</p>
+                                    <img src="assets/images/obi-wan-kenobi.png" alt="Obi-Wan Kenobi" class="img-fluid">
+                                    <p>120</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="fighter-container d-none">
+                                <a href="#" class="luke-skywalker">
+                                    <p>Luke Skywalker</p>
+                                    <img src="assets/images/luke-skywalker.png" alt="Luke Skywalker" class="img-fluid">
+                                    <p>100</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="fighter-container d-none">
+                                <a href="#" class="dark-sidious">
+                                    <p>Dark Sidious</p>
+                                    <img src="assets/images/darth-sidious.png" alt="Darth Sidious" class="img-fluid">
+                                    <p>150</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="fighter-container d-none">
+                                <a href="#" class="darth-maul">
+                                    <p>Darth Maul</p>
+                                    <img src="assets/images/darth-maul.png" alt="Darth Maul" class="img-fluid">
+                                    <p>180</p>
+                                </a>
+                            </div>                        
+                        </div>
+
                 </div>
 
             </div>
-
 
         </div>
     </div>
