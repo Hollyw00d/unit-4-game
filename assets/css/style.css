@@ -22,13 +22,22 @@ a {
     display: block;
     width: 100%;
     height: 100%;
+    background: #fff;
+    padding: 10px;
 }
 
 img {
     width: 200px;
 }
 
-.fighter-container {
-    background: #fff;
-    padding: 10px;
+#your-character .fighter-container {
+    border: 3px solid green;
+}
+
+#attacker .fighter-container {
+    border: 3px solid red;
+}
+
+#defender .fighter-container {
+    border: 3px solid black;
 }
