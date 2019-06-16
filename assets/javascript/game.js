@@ -3,23 +3,17 @@ $(document).ready(function() {
     var startGame = false;
 
     var attackBegun = false;
+    var fighting = false;
+
     var selectedAttacker;
+    var attackerSelectDataChar;
     var selectedDefender;
+    var defenderSelectDataChar;
 
-    var healthPointsObiWanKenobi = 120;
-    var healthPointsLukeSkywalker = 100;
-    var healthPointsDarthSidious = 150;
-    var healthPointsDarthMaul = 180;
-
-    var attackPowerObiWanKenobi;
-    var attackPowerLukeSkywalker;
-    var attackPowerDarthSidious;
-    var attackPowerDarthMaul;
-
-    var counterAttackPowerObiWanKenobi;
-    var counterAttackPowerLukeSkywalker;
-    var counterAttackPowerDarthSidious;
-    var counterAttackPowerDarthMaul;
+    var attackerHealthPoints;
+    var defenderHealthPoints;
+    var attackerAttackPower;
+    var defenderAttackPower;
 
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
@@ -27,13 +21,16 @@ $(document).ready(function() {
     var $gameStartBtn = $('#game-state-btn > button');
     var $messages = $('#messages');
     var $healthPoints = $('.health-points');
-
+    var $attackBtn = $('#attack-btn > button');
+    var $selectedAttackerElem;
+    var $selectedDefenderElem;
+    
     $gameStartBtn.on('click', function() {
         startGame = true;
         if(startGame) {
-            $messages.text('Click on a Character');
+            $messages.html('Click on a Character');
             $messages.removeClass('d-none');
-            $(this).text('Restart Game');
+            $(this).html('Restart Game');
         }
     });
 
@@ -44,7 +41,7 @@ $(document).ready(function() {
 
             attackBegun = true;
 
-            $messages.text('Click on an Enemy Available to Attack');
+            $messages.html('Click on an Enemy Available to Attack');
 
             $yourCharacterLinks.addClass('d-none');
             $(this).removeClass('d-none').addClass('active');
@@ -53,7 +50,9 @@ $(document).ready(function() {
                 if($($attackerLinks[i]).attr('data-char') === $(this).attr('data-char')) {
                     $($attackerLinks[i]).addClass('d-none');
                     var $attackerSelectDataChar = $($attackerLinks[i]).attr('data-char');
+                    attackerSelectDataChar = $attackerSelectDataChar;
                     selectedAttacker = $("#attacker a[data-char='" + $attackerSelectDataChar + "']").attr('aria-label');
+                    $selectedAttackerElem = $("#attacker a[data-char='" + $attackerSelectDataChar + "']");
                 }
                 else {
                     $($attackerLinks[i]).removeClass('d-none').addClass('active');
@@ -71,16 +70,46 @@ $(document).ready(function() {
                 if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
                     $($defenderLinks[i]).removeClass('d-none').addClass('active');
                     var $defenderSelectDataChar = $($defenderLinks[i]).attr('data-char');
+                    defenderSelectDataChar = $defenderSelectDataChar;
                     selectedDefender = $("#defender a[data-char='" + $defenderSelectDataChar + "']").attr('aria-label');
+                    $selectedDefenderElem = selectedDefender = $("#defender a[data-char='" + $defenderSelectDataChar + "']");
                 }
-            }  
-            
+            } 
+
+            $messages.html('You have selected ' + selectedAttacker + ' to attack and ' + selectedDefender + ' to defend.<br /><br />Click the Attack button to fight!');
+            fighting = true;
         }
     });
 
+    
     $defenderLinks.on('click', function(e) {
         e.preventDefault();
     });
+    
+    $attackBtn.on('click', function(e) {
+        e.preventDefault();
 
+        if(startGame && fighting) {
+            var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
+            var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
+
+            attackerHealthPoints = $selectedAttackerElem.find('.health-points').text();
+            defenderHealthPoints = $selectedDefenderElem.find('.health-points').text();
+
+            if(randomAttackerValue > randomDefenderValue) {
+                defenderHealthPoints -= randomAttackerValue;
+                $selectedDefenderElem.find('.health-points').text(defenderHealthPoints);
+            }
+            else if(randomAttackerValue < randomDefenderValue) {
+                attackerHealthPoints -= randomDefenderValue;
+                $selectedAttackerElem.find('.health-points').text(defenderHealthPoints);
+            }
+            else if(randomAttackerValue === randomDefenderValue) {
+
+            }
+
+        }
+
+    });
 
 });
