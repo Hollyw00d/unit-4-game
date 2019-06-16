@@ -5,10 +5,10 @@ $(document).ready(function() {
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
     var $defenderLinks = $('#defender a');
-
+    var $gameStartBtn = $('#game-state-btn > button');
     var $messages = $('#messages');
 
-    $('#game-state-btn > button').on('click', function() {
+    $gameStartBtn.on('click', function() {
         startGame = true;
         $messages.removeClass('d-none');
         $(this).text('Restart Game');
@@ -47,6 +47,7 @@ $(document).ready(function() {
             }            
         }
     });
+
 
 
 });
