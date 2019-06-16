@@ -14,25 +14,76 @@ $(document).ready(function() {
     var defenderHealthPointsCurrent;
 
     var $yourCharacterLinks = $('#your-character a');
+    var $yourCharacterHealthPoints = $('#your-character .health-points');
     var $attackerLinks = $('#attacker a');
     var $defenderLinks = $('#defender a');
     var $gameStartBtn = $('#game-state-btn > button');
     var $messages = $('#messages');
     var $healthPoints = $('.health-points');
     var $attackBtn = $('#attack-btn > button');
-    var $selectedAttackerElem;
-    var $selectedAttackerHealthPointsElem;
+    var $selectedAttackerElem = '';
+    var $selectedAttackerHealthPointsElem = '';
     var $selectedDefenderElem;
     var $selectedDefenderHealthPointsElem;
+    var $selectedAttackerHealthElem = '';
+    var $selectedDefenderHealthElem = '';
+
+    function resetHealthPoints() {
+        startGame = false;
+        if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
+            switch($selectedAttackerHealthElem.attr('data-char')) {
+                case 'obiWanKenobi':
+                    console.log(attackerHealthPointsStarting);
+                    $selectedAttackerHealthElem.find('.health-points').text('blah');
+                    console.log("obiWanKenobi $selectedAttackerHealthElem.attr('data-char')")
+                case 'lukeSkywalker':
+                    attackerHealthPointsStarting = 100;
+                    $selectedAttackerHealthPointsElem.text('100');
+                    break;
+                case 'darthSidious':
+                    attackerHealthPointsStarting = 150;
+                    $selectedAttackerHealthPointsElem.text('150');    
+                    break;
+                case 'darthMaul':
+                    attackerHealthPointsStarting = 180;
+                    $selectedAttackerHealthPointsElem.text('180');    
+                    break;            
+            }
+
+            switch($selectedDefenderElem.attr('data-char')) {
+                case 'obiWanKenobi':
+                    defenderHealthPointsStarting = 120;
+                    $selectedDefenderElem.find('.health-points').text(defenderHealthPointsStarting);
+                    console.log('obiWanKenobi inside $selectedDefenderElem.attr("data-char")');
+                    break;
+                case 'lukeSkywalker':
+                    defenderHealthPointsStarting = 100;
+                    $selectedDefenderElem.find('.health-points').text(defenderHealthPointsStarting);
+                    console.log('lukeSkywalker inside $selectedDefenderElem.attr("data-char")');
+                    break;
+                case 'darthSidious':
+                    defenderHealthPointsStarting = 150;
+                    $selectedDefenderElem.find('.health-points').text(defenderHealthPointsStarting);   
+                    break;
+                case 'darthMaul':
+                    defenderHealthPointsStarting = 180;
+                    $selectedDefenderElem.find('.health-points').text(defenderHealthPointsStarting);  
+                    break;                  
+            }
+
+        }
+  
+    }
 
     $gameStartBtn.on('click', function() {
-        startGame = true;
-        if(startGame) {
+        resetHealthPoints();        
+        if(!startGame) {
             $messages.html('Click on a Character');
             $messages.removeClass('d-none');
             $(this).html('Restart Game');
-            
+            startGame = true;
         }
+
     });
 
     $yourCharacterLinks.on('click', function(e) {
@@ -52,19 +103,14 @@ $(document).ready(function() {
                     attackerSelectDataChar = $attackerSelectDataChar;
                     selectedAttacker = $("#attacker a[data-char='" + $attackerSelectDataChar + "']").attr('aria-label');
                     $selectedAttackerElem = $("#your-character a[data-char='" + $attackerSelectDataChar + "']");
-                    $selectedAttackerHealthElem = $("#attacker a[data-char='" + $attackerSelectDataChar + "'] ");
-                    $selectedAttackerHealthPointsElem = $("#attacker a[data-char='" + $attackerSelectDataChar + "'] .health-points");
-                    attackerHealthPointsStarting = $selectedAttackerHealthPointsElem.text();
+                    $selectedAttackerHealthElem = $("#your-character a[data-char='" + $attackerSelectDataChar + "'] ");
+                    $selectedAttackerHealthPointsElem = $("#your-character a[data-char='" + $attackerSelectDataChar + "']").find('.health-points');
                 }
                 else {
                     $($attackerLinks[i]).removeClass('d-none').addClass('active');
                 }
             }
 
-            $selectedAttackerHealthPointsElem.html(attackerHealthPointsStarting);
-            if(defenderHealthPointsStarting && $selectedDefenderHealthPointsElem) {
-                $selectedDefenderHealthPointsElem.html(defenderHealthPointsStarting);
-            }
         }
     });
 
@@ -86,6 +132,9 @@ $(document).ready(function() {
             } 
 
             $messages.html('You have selected ' + selectedAttacker + ' to attack and ' + selectedDefender + ' to defend.<br /><br />Click the Attack button to fight!');
+
+
+
             fighting = true;
         }
     });
@@ -105,8 +154,8 @@ $(document).ready(function() {
             var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
             var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
 
-            attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
-            defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
+            // attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
+            // defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
 
             if(defenderHealthPointsCurrent < 1) {
                 $messages.html(selectedAttacker + ' beats ' +  selectedDefender + '!');
