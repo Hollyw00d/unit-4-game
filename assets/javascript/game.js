@@ -6,14 +6,10 @@ $(document).ready(function() {
     var fighting = false;
 
     var selectedAttacker;
-    var attackerSelectDataChar;
     var selectedDefender;
-    var defenderSelectDataChar;
 
     var attackerHealthPoints;
     var defenderHealthPoints;
-    var attackerAttackPower;
-    var defenderAttackPower;
 
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
@@ -97,15 +93,28 @@ $(document).ready(function() {
             attackerHealthPoints = $selectedAttackerElem.find('.health-points').text();
             defenderHealthPoints = $selectedDefenderElem.find('.health-points').text();
 
-            if(randomAttackerValue > randomDefenderValue) {
-                defenderHealthPoints -= randomAttackerValue;
-                $selectedDefenderElem.find($healthPoints).html(defenderHealthPoints);
+            if(defenderHealthPoints < 1) {
+                $messages.html(selectedAttacker + ' beats ' +  selectedDefender + '!');
+                console.log('inside else if defenderHealthPoints < 1 && attackerHealthPoints > 0')
             }
-            else if(randomAttackerValue < randomDefenderValue) {
-                attackerHealthPoints -= randomDefenderValue;
-                $selectedAttackerElem.find($healthPoints).html(attackerHealthPoints);
+            else if(attackerHealthPoints < 1) {
+                console.log('inside else if attackerHealthPoints < 1 && defenderHealthPoints > 0');
+                $messages.html(selectedDefender + ' beats ' +  selectedAttacker + '!');
             }
-            else if(randomAttackerValue === randomDefenderValue) {
+            else {
+                if(randomAttackerValue > randomDefenderValue) {
+                    defenderHealthPoints -= randomAttackerValue;
+                    $selectedDefenderElem.find($healthPoints).html(defenderHealthPoints);
+                    $messages.html(selectedDefender + ' lost ' +  randomAttackerValue + ' health points!');
+                }
+                else if(randomAttackerValue < randomDefenderValue) {
+                    attackerHealthPoints -= randomDefenderValue;
+                    $selectedAttackerElem.find($healthPoints).html(attackerHealthPoints);
+                    $messages.html(selectedAttacker + ' lost ' +  randomAttackerValue + ' health points!');
+                }
+                else if(defenderHealthPoints < 1) {
+                    console.log('blah');
+                }
 
             }
 
