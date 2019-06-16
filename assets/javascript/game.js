@@ -70,10 +70,8 @@ $(document).ready(function() {
             for(var i = 0; i < $defenderLinks.length; i++) {
                 if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
                     $($defenderLinks[i]).removeClass('d-none').addClass('active');
-                    
-                }
-                else {
-                    $($defenderLinks[i]).addClass('d-none');
+                    var $defenderSelectDataChar = $($defenderLinks[i]).attr('data-char');
+                    selectedDefender = $("#defender a[data-char='" + $defenderSelectDataChar + "']").attr('aria-label');
                 }
             }  
             
