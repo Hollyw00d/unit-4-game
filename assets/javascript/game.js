@@ -34,14 +34,14 @@ $(document).ready(function() {
 
         if(startGame) {
             $yourCharacterLinks.addClass('d-none');
-            $(this).removeClass('d-none');
+            $(this).removeClass('d-none').addClass('active');
 
             for(var i = 0; i < $attackerLinks.length; i++) {
                 if($($attackerLinks[i]).attr('data-char') === $(this).attr('data-char')) {
                     $($attackerLinks[i]).addClass('d-none');
                 }
                 else {
-                    $($attackerLinks[i]).removeClass('d-none');
+                    $($attackerLinks[i]).removeClass('d-none').addClass('active');
                 }
             }
         }
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
             for(var i = 0; i < $defenderLinks.length; i++) {
                 if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
-                    $($defenderLinks[i]).removeClass('d-none');
+                    $($defenderLinks[i]).removeClass('d-none').addClass('active');
                 }
                 else {
                     $($defenderLinks[i]).addClass('d-none');
@@ -63,6 +63,9 @@ $(document).ready(function() {
         }
     });
 
+    $defenderLinks.on('click', function(e) {
+        e.preventDefault();
+    });
 
 
 });
