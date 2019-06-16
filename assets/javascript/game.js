@@ -1,14 +1,27 @@
 $(document).ready(function() {
     // Start game set to false
     var startGame = false;
-  
+
+    var healthPointsObiWanKenobi;
+    var healthPointsLukeSkywalker;
+    var healthPointsDarthSidious;
+    var healthPointsDarthMaul;
+
+    var attackPowerObiWanKenobi;
+    var attackPowerLukeSkywalker;
+    var attackPowerDarthSidious;
+    var attackPowerDarthMaul;
+
+    var counterAttackPowerObiWanKenobi;
+    var counterAttackPowerLukeSkywalker;
+    var counterAttackPowerDarthSidious;
+    var counterAttackPowerDarthMaul;
 
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
     var $defenderLinks = $('#defender a');
     var $gameStartBtn = $('#game-state-btn > button');
     var $messages = $('#messages');
-    
 
     $gameStartBtn.on('click', function() {
         startGame = true;
