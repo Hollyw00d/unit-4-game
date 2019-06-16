@@ -52,7 +52,8 @@ $(document).ready(function() {
                     var $attackerSelectDataChar = $($attackerLinks[i]).attr('data-char');
                     attackerSelectDataChar = $attackerSelectDataChar;
                     selectedAttacker = $("#attacker a[data-char='" + $attackerSelectDataChar + "']").attr('aria-label');
-                    $selectedAttackerElem = $("#attacker a[data-char='" + $attackerSelectDataChar + "']");
+                    $selectedAttackerElem = $("#your-character a[data-char='" + $attackerSelectDataChar + "']");
+                    $selectedAttackerHealthElem = $("#attacker a[data-char='" + $attackerSelectDataChar + "'] ");
                 }
                 else {
                     $($attackerLinks[i]).removeClass('d-none').addClass('active');
@@ -72,7 +73,7 @@ $(document).ready(function() {
                     var $defenderSelectDataChar = $($defenderLinks[i]).attr('data-char');
                     defenderSelectDataChar = $defenderSelectDataChar;
                     selectedDefender = $("#defender a[data-char='" + $defenderSelectDataChar + "']").attr('aria-label');
-                    $selectedDefenderElem = selectedDefender = $("#defender a[data-char='" + $defenderSelectDataChar + "']");
+                    $selectedDefenderElem = $("#defender a[data-char='" + $defenderSelectDataChar + "']");
                 }
             } 
 
@@ -98,11 +99,11 @@ $(document).ready(function() {
 
             if(randomAttackerValue > randomDefenderValue) {
                 defenderHealthPoints -= randomAttackerValue;
-                $selectedDefenderElem.find('.health-points').text(defenderHealthPoints);
+                $selectedDefenderElem.find($healthPoints).html(defenderHealthPoints);
             }
             else if(randomAttackerValue < randomDefenderValue) {
                 attackerHealthPoints -= randomDefenderValue;
-                $selectedAttackerElem.find('.health-points').text(defenderHealthPoints);
+                $selectedAttackerElem.find($healthPoints).html(attackerHealthPoints);
             }
             else if(randomAttackerValue === randomDefenderValue) {
 
