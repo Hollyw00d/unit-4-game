@@ -3,13 +3,14 @@ $(document).ready(function() {
     var startGame = false;
 
     var attackBegun = false;
+    var attackEnded = false;
     var fighting = false;
 
     var selectedAttacker;
     var selectedDefender;
 
-    var attackerHealthPoints;
-    var defenderHealthPoints;
+    var attackerHealthPointsCurrent;
+    var defenderHealthPointsCurrent;
 
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
@@ -60,7 +61,8 @@ $(document).ready(function() {
 
     $attackerLinks.on('click', function(e) {
         e.preventDefault();
-        if(startGame && !$defenderLinks.hasClass('active')) {
+        if(startGame) {
+            console.log(attackEnded);
             $(this).addClass('d-none');
 
             for(var i = 0; i < $defenderLinks.length; i++) {
@@ -87,33 +89,34 @@ $(document).ready(function() {
         e.preventDefault();
 
         if(startGame && fighting) {
+            console.log();
             var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
             var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
 
-            attackerHealthPoints = $selectedAttackerElem.find('.health-points').text();
-            defenderHealthPoints = $selectedDefenderElem.find('.health-points').text();
+            attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
+            defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
 
-            if(defenderHealthPoints < 1) {
+            if(defenderHealthPointsCurrent < 1) {
                 $messages.html(selectedAttacker + ' beats ' +  selectedDefender + '!');
-                console.log('inside else if defenderHealthPoints < 1 && attackerHealthPoints > 0')
+                $selectedDefenderElem.addClass('dead');
+                attackEnded = true;
             }
-            else if(attackerHealthPoints < 1) {
-                console.log('inside else if attackerHealthPoints < 1 && defenderHealthPoints > 0');
-                $messages.html(selectedDefender + ' beats ' +  selectedAttacker + '!');
+            else if(attackerHealthPointsCurrent < 1) {
+                $messages.html(selectedDefender + ' beats ' +  selectedAttacker + '. You lost!');
             }
             else {
                 if(randomAttackerValue > randomDefenderValue) {
-                    defenderHealthPoints -= randomAttackerValue;
-                    $selectedDefenderElem.find($healthPoints).html(defenderHealthPoints);
+                    defenderHealthPointsCurrent -= randomAttackerValue;
+                    $selectedDefenderElem.find($healthPoints).html(defenderHealthPointsCurrent);
                     $messages.html(selectedDefender + ' lost ' +  randomAttackerValue + ' health points!');
                 }
                 else if(randomAttackerValue < randomDefenderValue) {
-                    attackerHealthPoints -= randomDefenderValue;
-                    $selectedAttackerElem.find($healthPoints).html(attackerHealthPoints);
+                    attackerHealthPointsCurrent -= randomDefenderValue;
+                    $selectedAttackerElem.find($healthPoints).html(attackerHealthPointsCurrent);
                     $messages.html(selectedAttacker + ' lost ' +  randomAttackerValue + ' health points!');
                 }
-                else if(defenderHealthPoints < 1) {
-                    console.log('blah');
+                else if(randomAttackerValue === randomDefenderValue) {
+                    $messages.html(selectedAttacker + ' and ' + selectedDefender + ' both tied. No one lost health points!');
                 }
 
             }
