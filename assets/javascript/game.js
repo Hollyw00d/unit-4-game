@@ -29,7 +29,6 @@ $(document).ready(function() {
     var $selectedDefenderHealthElem = '';
 
     function resetHealthPoints() {
-        startGame = false;
         if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
             switch($selectedAttackerHealthElem.attr('data-char')) {
                 case 'obiWanKenobi':
@@ -115,6 +114,8 @@ $(document).ready(function() {
 
     $attackerLinks.on('click', function(e) {
         e.preventDefault();
+        console.log('startGame: ', startGame);
+        console.log('fighting: ', fighting);
         if(startGame && !fighting) {
             $(this).addClass('d-none');
 
@@ -146,12 +147,17 @@ $(document).ready(function() {
     $attackBtn.on('click', function(e) {
         e.preventDefault();
 
-        if(startGame && !fighting || startGame && fighting) {
+        console.log('startGame: ', startGame);
+        console.log('fighting: ', fighting);
+        
+        if(startGame) {
 
             fighting = true;
 
-            var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
-            var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
+            //var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
+            //var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
+            var randomAttackerValue = 100;
+            var randomDefenderValue = 1;
 
             attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
             defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
@@ -160,6 +166,7 @@ $(document).ready(function() {
                 $messages.html(selectedAttacker + ' beats ' +  selectedDefender + '!');
                 $selectedDefenderElem.addClass('dead');
                 fighting = false;
+                startGame = true;
                 resetHealthPoints();
             }
             else if(attackerHealthPointsCurrent < 1) {
