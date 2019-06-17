@@ -23,8 +23,8 @@ $(document).ready(function() {
     var $attackBtn = $('#attack-btn > button');
     var $selectedAttackerElem = '';
     var $selectedAttackerHealthPointsElem = '';
-    var $selectedDefenderElem;
-    var $selectedDefenderHealthPointsElem;
+    var $selectedDefenderElem = '';
+    var $selectedDefenderHealthPointsElem = '';
     var $selectedAttackerHealthElem = '';
     var $selectedDefenderHealthElem = '';
 
@@ -33,7 +33,6 @@ $(document).ready(function() {
         if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
             switch($selectedAttackerHealthElem.attr('data-char')) {
                 case 'obiWanKenobi':
-                    console.log(attackerHealthPointsStarting);
                     $selectedAttackerHealthElem.find('.health-points').text('blah');
                     console.log("obiWanKenobi $selectedAttackerHealthElem.attr('data-char')")
                 case 'lukeSkywalker':
@@ -154,13 +153,14 @@ $(document).ready(function() {
             var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
             var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
 
-            // attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
-            // defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
+            attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
+            defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
 
             if(defenderHealthPointsCurrent < 1) {
                 $messages.html(selectedAttacker + ' beats ' +  selectedDefender + '!');
                 $selectedDefenderElem.addClass('dead');
                 fighting = false;
+                resetHealthPoints();
             }
             else if(attackerHealthPointsCurrent < 1) {
                 $messages.html(selectedDefender + ' beats ' +  selectedAttacker + '. You lost!');
