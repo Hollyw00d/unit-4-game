@@ -14,7 +14,7 @@ $(document).ready(function() {
     var defenderHealthPointsCurrent;
 
     var $yourCharacterLinks = $('#your-character a');
-    var $yourCharacterHealthPoints = $('#your-character .health-points');
+    //var $yourCharacterHealthPoints = $('#your-character .health-points');
     var $attackerLinks = $('#attacker a');
     var $defenderLinks = $('#defender a');
     var $gameStartBtn = $('#game-state-btn > button');
@@ -26,7 +26,7 @@ $(document).ready(function() {
     var $selectedDefenderElem = '';
     var $selectedDefenderHealthPointsElem = '';
     var $selectedAttackerHealthElem = '';
-    var $selectedDefenderHealthElem = '';
+    //var $selectedDefenderHealthElem = '';
 
     function resetHealthPoints() {
         if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
@@ -36,15 +36,15 @@ $(document).ready(function() {
                     console.log("obiWanKenobi $selectedAttackerHealthElem.attr('data-char')")
                 case 'lukeSkywalker':
                     attackerHealthPointsStarting = 100;
-                    $selectedAttackerHealthPointsElem.text('100');
+                    $selectedAttackerHealthPointsElem.text(100);
                     break;
                 case 'darthSidious':
                     attackerHealthPointsStarting = 150;
-                    $selectedAttackerHealthPointsElem.text('150');    
+                    $selectedAttackerHealthPointsElem.text(150);    
                     break;
                 case 'darthMaul':
                     attackerHealthPointsStarting = 180;
-                    $selectedAttackerHealthPointsElem.text('180');    
+                    $selectedAttackerHealthPointsElem.text(180);    
                     break;            
             }
 
