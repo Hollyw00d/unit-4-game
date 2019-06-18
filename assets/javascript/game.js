@@ -7,7 +7,7 @@ $(document).ready(function() {
     var selectedAttacker;
     var selectedDefender;
 
-    var attackerHealthPointsStarting;
+    //var attackerHealthPointsStarting;
     var defenderHealthPointsStarting;
 
     var attackerHealthPointsCurrent;
@@ -22,7 +22,7 @@ $(document).ready(function() {
     var $healthPoints = $('.health-points');
     var $attackBtn = $('#attack-btn > button');
     var $selectedAttackerElem = '';
-    var $selectedAttackerHealthPointsElem = '';
+    //var $selectedAttackerHealthPointsElem = '';
     var $selectedDefenderElem = '';
     var $selectedDefenderHealthPointsElem = '';
     var $selectedAttackerHealthElem = '';
@@ -32,19 +32,21 @@ $(document).ready(function() {
         if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
             switch($selectedAttackerHealthElem.attr('data-char')) {
                 case 'obiWanKenobi':
-                    $selectedAttackerHealthElem.find('.health-points').text('blah');
+                    attackerHealthPointsStarting = 120;
+                    $selectedAttackerHealthElem.find('.health-points').text(120);
                     console.log("obiWanKenobi $selectedAttackerHealthElem.attr('data-char')")
+                    break;
                 case 'lukeSkywalker':
                     attackerHealthPointsStarting = 100;
-                    $selectedAttackerHealthPointsElem.text(100);
+                    $selectedAttackerHealthElem.find('.health-points').text(100);
                     break;
                 case 'darthSidious':
                     attackerHealthPointsStarting = 150;
-                    $selectedAttackerHealthPointsElem.text(150);    
+                    $selectedAttackerHealthElem.find('.health-points').text(150);                    
                     break;
                 case 'darthMaul':
                     attackerHealthPointsStarting = 180;
-                    $selectedAttackerHealthPointsElem.text(180);    
+                    $selectedAttackerHealthElem.find('.health-points').text(180);                                           
                     break;            
             }
 
@@ -117,7 +119,12 @@ $(document).ready(function() {
         console.log('startGame: ', startGame);
         console.log('fighting: ', fighting);
         if(startGame && !fighting) {
+
+            resetHealthPoints();
+
             $(this).addClass('d-none');
+
+            $attackBtn.parent('#attack-btn').removeAttr('class');
 
             for(var i = 0; i < $defenderLinks.length; i++) {
                 if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
