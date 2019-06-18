@@ -75,13 +75,27 @@ $(document).ready(function() {
   
     }
 
-    $gameStartBtn.on('click', function() {
-        resetHealthPoints();        
+    function resetButtonsAndText() {
+        $gameStartBtn.parent('#game-state-btn').removeClass('active');
+        $gameStartBtn.html('Start Game');
+        $messages.html('Game Started').addClass('d-none');
+        $attackBtn.addClass('d-none');
+        startGame = false;
+        fighting = false;
+    }
+
+    $gameStartBtn.on('click', function() {       
         if(!startGame) {
             $messages.html('Click on a Character');
             $messages.removeClass('d-none');
             $(this).html('Restart Game');
             startGame = true;
+            $gameStartBtn.parent('#game-state-btn').addClass('active');
+            resetHealthPoints();
+        }
+        else if($gameStartBtn.parent('#game-state-btn').hasClass('active')) {
+            resetButtonsAndText();
+            resetHealthPoints();
         }
 
     });
@@ -161,10 +175,10 @@ $(document).ready(function() {
 
             fighting = true;
 
-            //var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
-            //var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
-            var randomAttackerValue = 100;
-            var randomDefenderValue = 1;
+            var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
+            var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
+            //var randomAttackerValue = 100;
+            //var randomDefenderValue = 1;
 
             attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
             defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
@@ -174,11 +188,14 @@ $(document).ready(function() {
                 $selectedDefenderElem.addClass('dead');
                 fighting = false;
                 startGame = true;
+                $attackBtn.parent('#attack-btn').attr('class', 'd-none');
                 resetHealthPoints();
             }
             else if(attackerHealthPointsCurrent < 1) {
                 $messages.html(selectedDefender + ' beats ' +  selectedAttacker + '. You lost!');
                 fighting = false;
+                startGame = false;
+                $attackBtn.parent('#attack-btn').attr('class', 'd-none');
             }
             else {
                 if(randomAttackerValue > randomDefenderValue) {
