@@ -7,14 +7,12 @@ $(document).ready(function() {
     var selectedAttacker;
     var selectedDefender;
 
-    //var attackerHealthPointsStarting;
     var defenderHealthPointsStarting;
 
     var attackerHealthPointsCurrent;
     var defenderHealthPointsCurrent;
 
     var $yourCharacterLinks = $('#your-character a');
-    //var $yourCharacterHealthPoints = $('#your-character .health-points');
     var $attackerLinks = $('#attacker a');
     var $defenderLinks = $('#defender a');
     var $gameStartBtn = $('#game-state-btn > button');
@@ -22,11 +20,9 @@ $(document).ready(function() {
     var $healthPoints = $('.health-points');
     var $attackBtn = $('#attack-btn > button');
     var $selectedAttackerElem = '';
-    //var $selectedAttackerHealthPointsElem = '';
     var $selectedDefenderElem = '';
     var $selectedDefenderHealthPointsElem = '';
     var $selectedAttackerHealthElem = '';
-    //var $selectedDefenderHealthElem = '';
 
     function resetHealthPoints() {
         if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
