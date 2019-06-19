@@ -1,17 +1,23 @@
 $(document).ready(function() {
-    // Start game set to false
+    // startGame set to false
     var startGame = false;
-
+    // fighting set to false
     var fighting = false;
 
+    // Set selectedAttacker and 
+    // selectedDefender to strings of who atacker and defender are
     var selectedAttacker;
     var selectedDefender;
 
+    // Use this variable to reset all character's
+    // points to their health point original values
     var defenderHealthPointsStarting;
 
+    // Keep track of current attacker and defender health points
     var attackerHealthPointsCurrent;
     var defenderHealthPointsCurrent;
 
+    // Select elements
     var $yourCharacterLinks = $('#your-character a');
     var $attackerLinks = $('#attacker a');
     var $defenderLinks = $('#defender a');
@@ -24,8 +30,13 @@ $(document).ready(function() {
     var $selectedDefenderHealthPointsElem = '';
     var $selectedAttackerHealthElem = '';
 
+    // Reset health points
     function resetHealthPoints() {
+        // If selected attacker elem and selected defender elem
+        // does not equal empty string
         if($selectedAttackerElem !== '' && $selectedDefenderElem !== '') {
+            // Do switch statement to select attackers by
+            // data-char attribute in anchor tag
             switch($selectedAttackerHealthElem.attr('data-char')) {
                 case 'obiWanKenobi':
                     attackerHealthPointsStarting = 120;
@@ -46,6 +57,8 @@ $(document).ready(function() {
                     break;            
             }
 
+            // Do switch statement to select defenders by
+            // data-char attribute in anchor tag
             switch($selectedDefenderElem.attr('data-char')) {
                 case 'obiWanKenobi':
                     defenderHealthPointsStarting = 120;
@@ -70,7 +83,7 @@ $(document).ready(function() {
         }
   
     }
-
+    // Reset buttons and text, but NOT health points
     function resetButtonsAndText() {
         $gameStartBtn.parent('#game-state-btn').removeClass('active');
         $gameStartBtn.html('Start Game');
