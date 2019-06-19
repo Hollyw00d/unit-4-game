@@ -76,6 +76,11 @@ $(document).ready(function() {
         $gameStartBtn.html('Start Game');
         $messages.html('Game Started').addClass('d-none');
         $attackBtn.addClass('d-none');
+
+        $yourCharacterLinks.removeClass('d-none');
+        $attackerLinks.removeClass('active').addClass('d-none');
+        $defenderLinks.removeClass('active').addClass('d-none');
+
         startGame = false;
         fighting = false;
     }
@@ -135,6 +140,7 @@ $(document).ready(function() {
             $(this).addClass('d-none');
 
             $attackBtn.parent('#attack-btn').removeAttr('class');
+            $attackBtn.removeClass('d-none');
 
             for(var i = 0; i < $defenderLinks.length; i++) {
                 if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
