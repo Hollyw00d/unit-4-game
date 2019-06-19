@@ -94,7 +94,7 @@ $(document).ready(function() {
             $gameStartBtn.parent('#game-state-btn').addClass('active');
             resetHealthPoints();
         }
-        else if($gameStartBtn.parent('#game-state-btn').hasClass('active')) {
+        else if(startGame && $gameStartBtn.parent('#game-state-btn').hasClass('active')) {
             resetButtonsAndText();
             resetHealthPoints();
         }
