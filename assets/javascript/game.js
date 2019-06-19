@@ -98,7 +98,8 @@ $(document).ready(function() {
         fighting = false;
     }
 
-    $gameStartBtn.on('click', function() {       
+    // Start game button
+    $gameStartBtn.on('click', function() {      
         if(!startGame) {
             $messages.html('Click on a Character');
             $messages.removeClass('d-none');
@@ -114,6 +115,7 @@ $(document).ready(function() {
 
     });
 
+    // Link to click on to choose a character to attack
     $yourCharacterLinks.on('click', function(e) {
         e.preventDefault();
 
@@ -124,6 +126,8 @@ $(document).ready(function() {
             $yourCharacterLinks.addClass('d-none');
             $(this).removeClass('d-none').addClass('active');
 
+            // Choose selected attacker and show that attacker
+            // and make all other attackers hidden
             for(var i = 0; i < $attackerLinks.length; i++) {
                 if($($attackerLinks[i]).attr('data-char') === $(this).attr('data-char')) {
                     $($attackerLinks[i]).addClass('d-none');
@@ -142,12 +146,12 @@ $(document).ready(function() {
         }
     });
 
+    // Click on a character to defend
     $attackerLinks.on('click', function(e) {
         e.preventDefault();
-        console.log('startGame: ', startGame);
-        console.log('fighting: ', fighting);
-        if(startGame && !fighting) {
 
+        if(startGame && !fighting) {
+            // Always reset health points
             resetHealthPoints();
 
             $(this).addClass('d-none');
@@ -155,6 +159,7 @@ $(document).ready(function() {
             $attackBtn.parent('#attack-btn').removeAttr('class');
             $attackBtn.removeClass('d-none');
 
+            // Select a defender
             for(var i = 0; i < $defenderLinks.length; i++) {
                 if($($defenderLinks[i]).attr('data-char') === $(this).attr('data-char')) {
                     $($defenderLinks[i]).removeClass('d-none').addClass('active');
@@ -175,29 +180,30 @@ $(document).ready(function() {
         }
     });
 
-    
+    // Use e.preventDefault(); to prevent default behavior
+    // on defender links
     $defenderLinks.on('click', function(e) {
         e.preventDefault();
     });
     
+    // Attack button
     $attackBtn.on('click', function(e) {
         e.preventDefault();
-
-        console.log('startGame: ', startGame);
-        console.log('fighting: ', fighting);
         
         if(startGame) {
 
             fighting = true;
 
+            // Set randomAttackerValue and randomDefenderValue to 6 through 60
             var randomAttackerValue = (Math.floor(Math.random() * 10) + 1) * 6;
             var randomDefenderValue = (Math.floor(Math.random() * 10) + 1) * 6;
-            //var randomAttackerValue = 100;
-            //var randomDefenderValue = 1;
 
+            // Get current attacker health points
+            // and defender health points
             attackerHealthPointsCurrent = $selectedAttackerElem.find('.health-points').text();
             defenderHealthPointsCurrent = $selectedDefenderElem.find('.health-points').text();
 
+            // If attacker wins
             if(defenderHealthPointsCurrent < 1) {
                 $messages.html(selectedAttacker + ' beats ' +  selectedDefender + '!');
                 $selectedDefenderElem.addClass('dead');
@@ -206,12 +212,16 @@ $(document).ready(function() {
                 $attackBtn.parent('#attack-btn').attr('class', 'd-none');
                 resetHealthPoints();
             }
+            // Else if defender wins
             else if(attackerHealthPointsCurrent < 1) {
                 $messages.html(selectedDefender + ' beats ' +  selectedAttacker + '. You lost!');
                 fighting = false;
                 startGame = false;
                 $attackBtn.parent('#attack-btn').attr('class', 'd-none');
             }
+            // Else record attacker and defender points
+            // and take away points as needed.
+            // For ties don't take away any points on both sides
             else {
                 if(randomAttackerValue > randomDefenderValue) {
                     defenderHealthPointsCurrent -= randomAttackerValue;
