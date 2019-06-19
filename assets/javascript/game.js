@@ -91,18 +91,16 @@ $(document).ready(function() {
         $attackerLinks.removeClass('active').addClass('d-none');
         $defenderLinks.removeClass('active').addClass('d-none');
 
-        startGame = false;
+        startGame = true;
         fighting = false;
     }
+
+ 
 
     // Start game button
     $gameStartBtn.on('click', function() {      
         if(!startGame) {
-            $messages.html('Click on a Character');
-            $messages.removeClass('d-none');
-            $(this).html('Restart Game');
-            startGame = true;
-            $gameStartBtn.parent('#game-state-btn').addClass('active');
+            resetButtonsAndText();
             resetHealthPoints();
         }
         else if(startGame && $gameStartBtn.parent('#game-state-btn').hasClass('active')) {
@@ -117,6 +115,10 @@ $(document).ready(function() {
         e.preventDefault();
 
         if(startGame && !fighting) {
+            $gameStartBtn.html('Restart Game');
+            $gameStartBtn.parent('#game-state-btn').addClass('active');
+
+            $messages.removeClass('d-none');
 
             $messages.html('Click on an Enemy Available to Attack');
 
