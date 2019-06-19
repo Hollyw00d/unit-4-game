@@ -83,7 +83,13 @@ $(document).ready(function() {
     // Reset buttons and text, but NOT health points
     function resetButtonsAndText() {
         $gameStartBtn.parent('#game-state-btn').removeClass('active');
-        $gameStartBtn.html('Start Game');
+        if(!startGame) {
+            $gameStartBtn.html('Restart Game');    
+        }
+        else {
+            $gameStartBtn.html('Start Game');
+        }
+        
         $messages.html('Game Started').addClass('d-none');
         $attackBtn.addClass('d-none');
 
