@@ -41,7 +41,6 @@ $(document).ready(function() {
                 case 'obiWanKenobi':
                     attackerHealthPointsStarting = 120;
                     $selectedAttackerHealthElem.find('.health-points').text(120);
-                    console.log("obiWanKenobi $selectedAttackerHealthElem.attr('data-char')")
                     break;
                 case 'lukeSkywalker':
                     attackerHealthPointsStarting = 100;
@@ -63,12 +62,10 @@ $(document).ready(function() {
                 case 'obiWanKenobi':
                     defenderHealthPointsStarting = 120;
                     $selectedDefenderElem.find('.health-points').text(defenderHealthPointsStarting);
-                    console.log('obiWanKenobi inside $selectedDefenderElem.attr("data-char")');
                     break;
                 case 'lukeSkywalker':
                     defenderHealthPointsStarting = 100;
                     $selectedDefenderElem.find('.health-points').text(defenderHealthPointsStarting);
-                    console.log('lukeSkywalker inside $selectedDefenderElem.attr("data-char")');
                     break;
                 case 'darthSidious':
                     defenderHealthPointsStarting = 150;
