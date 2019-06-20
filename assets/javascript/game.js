@@ -82,6 +82,9 @@ $(document).ready(function() {
     }
     // Reset buttons and text, but NOT health points
     function resetButtonsAndText() {
+        startGame = true;
+        fighting = false;
+
         $gameStartBtn.parent('#game-state-btn').removeClass('active');
         if(!startGame) {
             $gameStartBtn.html('Restart Game');    
@@ -96,12 +99,7 @@ $(document).ready(function() {
         $yourCharacterLinks.removeClass('d-none');
         $attackerLinks.removeClass('active').addClass('d-none');
         $defenderLinks.removeClass('active').addClass('d-none');
-
-        startGame = true;
-        fighting = false;
     }
-
- 
 
     // Start game button
     $gameStartBtn.on('click', function() {      
